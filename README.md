@@ -3,6 +3,8 @@ jenkins-docker-setup
 
 Simple scripts to initialize an CI-environment with Docker
 
+![Overview](img/overview-diagram.png)
+
 Currently create.sh sets up:
 
 1. Jenkins master
