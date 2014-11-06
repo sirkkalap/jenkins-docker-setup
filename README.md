@@ -15,3 +15,5 @@ TODO:
 - Make it so, that Jenkins master can be parametrized and set up separately.
 - Fix the Swarm-setup on master. Slave can not currently register to the mastes, because master is lacking the Swarm-plugin.
 - Add Firefox and Xvfb to the slave
+
+![Screenchot](img/screenshot.png)
