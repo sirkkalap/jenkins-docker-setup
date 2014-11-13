@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cidfiles="jenkins_slave.cid oracle.cid"
+cidfiles="jenkins_master.cid"
 
 for cidf in $cidfiles; do
     cid=$(cat $cidf)

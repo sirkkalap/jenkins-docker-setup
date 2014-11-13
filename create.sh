@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-jenkins_master_cid=$(docker run -d \
-    -p 49080:8080 \
-    --cidfile=jenkins_master.cid \
-    csanchez/jenkins-swarm)
-jenkins_master_name=$(docker inspect --format='{{.Name}}' $jenkins_master_cid)
+JENKINS_MASTER=$1
+
+if [ -n $JENKINS_MASTER ]; then
+    echo "Usage: $0 <jenkins-master-ip-or-name>"
+    exit 1
+fi
 
 oracle_xe_cid=$(docker run -d \
     --cidfile=oracle.cid \
@@ -15,9 +16,9 @@ oracle_xe_name=$(docker inspect --format='{{.Name}}' $oracle_xe_cid)
 jenkins_slave_cid=$(docker run -d \
     --cidfile=jenkins_slave.cid \
     --link $oracle_xe_name:db \
-    --link $jenkins_master_name:jenkins \
     -e JENKINS_USERNAME=jenkins \
     -e JENKINS_PASSWORD=jenkins \
+    -e JENKINS_MASTER=$JENKINS_MASTER
     maestrodev/jenkins-slave)
 jenkins_slave_name=$(docker inspect --format='{{.Name}}' $jenkins_slave_cid)
 
