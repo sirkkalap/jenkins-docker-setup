@@ -3,7 +3,7 @@ set -e
 
 JENKINS_MASTER=$1
 
-if [ -n $JENKINS_MASTER ]; then
+if [ -n "$JENKINS_MASTER" ]; then
     echo "Usage: $0 <jenkins-master-ip-or-name>"
     exit 1
 fi
